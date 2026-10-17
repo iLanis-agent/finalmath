@@ -1,0 +1,315 @@
+[
+ {
+  "fn": "weightedTruth",
+  "args": [
+   [
+    90,
+    78,
+    85
+   ],
+   [
+    20,
+    30,
+    20
+   ]
+  ],
+  "expected": "Counted so far: 58.4 points of 100, over 70% of the grade, an average of 83.4% on what is graded."
+ },
+ {
+  "fn": "weightedTruth",
+  "args": [
+   [
+    100,
+    100,
+    100
+   ],
+   [
+    10,
+    10,
+    10
+   ]
+  ],
+  "expected": "Counted so far: 30.0 points of 100, over 30% of the grade, an average of 100.0% on what is graded."
+ },
+ {
+  "fn": "weightedTruth",
+  "args": [
+   [
+    70,
+    0,
+    0
+   ],
+   [
+    50,
+    0,
+    0
+   ]
+  ],
+  "expected": "Counted so far: 35.0 points of 100, over 50% of the grade, an average of 70.0% on what is graded."
+ },
+ {
+  "fn": "weightedTruth",
+  "args": [
+   [
+    90,
+    78,
+    85
+   ],
+   [
+    0,
+    0,
+    0
+   ]
+  ],
+  "expected": "ERR:enter a weight over 0 for at least one graded item"
+ },
+ {
+  "fn": "weightedTruth",
+  "args": [
+   [
+    90,
+    78,
+    250
+   ],
+   [
+    20,
+    30,
+    20
+   ]
+  ],
+  "expected": "ERR:scores must be between 0 and 200"
+ },
+ {
+  "fn": "weightedTruth",
+  "args": [
+   [
+    90,
+    78,
+    85
+   ],
+   [
+    20,
+    -1,
+    20
+   ]
+  ],
+  "expected": "ERR:weights must be 0 or more"
+ },
+ {
+  "fn": "neededTruth",
+  "args": [
+   [
+    90,
+    78,
+    85
+   ],
+   [
+    20,
+    30,
+    20
+   ],
+   30,
+   80
+  ],
+  "expected": "To finish at 80%, the final (30% of the grade) needs 72.0%."
+ },
+ {
+  "fn": "neededTruth",
+  "args": [
+   [
+    90,
+    78,
+    85
+   ],
+   [
+    20,
+    30,
+    20
+   ],
+   30,
+   95
+  ],
+  "expected": "To finish at 95%, the final would need 122.0%, which is above 100%."
+ },
+ {
+  "fn": "neededTruth",
+  "args": [
+   [
+    95,
+    95,
+    95
+   ],
+   [
+    20,
+    30,
+    20
+   ],
+   30,
+   70
+  ],
+  "expected": "To finish at 70%, the final (30% of the grade) needs 11.7%."
+ },
+ {
+  "fn": "neededTruth",
+  "args": [
+   [
+    90,
+    78,
+    85
+   ],
+   [
+    20,
+    30,
+    20
+   ],
+   20,
+   80
+  ],
+  "expected": "ERR:weights must add up to 100, they add up to 90"
+ },
+ {
+  "fn": "neededTruth",
+  "args": [
+   [
+    90,
+    78,
+    85
+   ],
+   [
+    20,
+    30,
+    20
+   ],
+   0,
+   80
+  ],
+  "expected": "ERR:final weight must be over 0"
+ },
+ {
+  "fn": "neededTruth",
+  "args": [
+   [
+    90,
+    78,
+    85
+   ],
+   [
+    20,
+    30,
+    20
+   ],
+   30,
+   101
+  ],
+  "expected": "ERR:target must be between 0 and 100"
+ },
+ {
+  "fn": "neededTruth",
+  "args": [
+   [
+    90,
+    78,
+    85
+   ],
+   [
+    20,
+    30,
+    20
+   ],
+   30,
+   72.5
+  ],
+  "expected": "To finish at 72.5%, the final (30% of the grade) needs 47.0%."
+ },
+ {
+  "fn": "dropTruth",
+  "args": [
+   [
+    92,
+    85,
+    70,
+    96,
+    88
+   ],
+   1
+  ],
+  "expected": "5 scores, lowest 1 dropped: average 90.3% instead of 86.2%."
+ },
+ {
+  "fn": "dropTruth",
+  "args": [
+   [
+    92,
+    85,
+    70,
+    96,
+    88
+   ],
+   0
+  ],
+  "expected": "5 scores, none dropped: average 86.2%."
+ },
+ {
+  "fn": "dropTruth",
+  "args": [
+   [
+    92,
+    85,
+    70,
+    96,
+    88
+   ],
+   2
+  ],
+  "expected": "5 scores, lowest 2 dropped: average 92.0% instead of 86.2%."
+ },
+ {
+  "fn": "dropTruth",
+  "args": [
+   [
+    92,
+    85,
+    70,
+    96,
+    88
+   ],
+   5
+  ],
+  "expected": "ERR:drop count must be less than the number of scores"
+ },
+ {
+  "fn": "dropTruth",
+  "args": [
+   [
+    92,
+    85,
+    70,
+    96,
+    88
+   ],
+   1.5
+  ],
+  "expected": "ERR:drop count must be a whole number, 0 or more"
+ },
+ {
+  "fn": "dropTruth",
+  "args": [
+   [
+    92
+   ],
+   0
+  ],
+  "expected": "ERR:enter at least 2 scores"
+ },
+ {
+  "fn": "dropTruth",
+  "args": [
+   [
+    50,
+    100
+   ],
+   1
+  ],
+  "expected": "2 scores, lowest 1 dropped: average 100.0% instead of 75.0%."
+ }
+]
