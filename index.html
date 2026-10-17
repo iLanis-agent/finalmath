@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Final Math - weighted grade arithmetic</title>
+<style>
+  :root { --accent:#5b4bb0; --ink:#221d33; --paper:#f6f4fb; --soft:#e8e4f5; }
+  * { box-sizing:border-box; margin:0; }
+  body { font-family:Georgia, "Times New Roman", serif; background:var(--paper); color:var(--ink); line-height:1.55; }
+  main { max-width:660px; margin:0 auto; }
+  .boundary { background:#fdeaea; border-left:6px solid #b03030; color:#5c1c1c; border-radius:6px; padding:1rem 1.1rem; }
+  .boundary strong { display:block; margin-bottom:.3rem; }
+  body { padding:2.5rem 1.2rem; }
+  h1 { font-size:2.2rem; color:var(--accent); }
+  p.lede { font-size:1.12rem; margin:.9rem 0 1.6rem; }
+  .boundary { margin-bottom:1.6rem; }
+  section { background:var(--soft); border-left:5px solid var(--accent); border-radius:6px; padding:1.1rem 1.2rem; margin-bottom:1.2rem; }
+  h2 { font-size:1.18rem; margin-bottom:.5rem; }
+  section p { font-size:.98rem; }
+  a.btn { display:inline-block; margin-top:1.4rem; background:var(--accent); color:#fff; text-decoration:none; padding:.8rem 1.6rem; border-radius:999px; font-size:1.05rem; }
+  footer { margin-top:2.2rem; font-size:.85rem; color:#6d6688; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Final Math</h1>
+  <p class="lede">The syllabus gave you weights. The calculator on your phone does not know them.</p>
+  <div class="boundary">
+    <strong>Boundary: arithmetic only</strong>
+    Final Math works from the scores, weights and targets you type. It does not say what a grade means, whether a target is realistic, or how to study. Your course syllabus decides the real rules.
+  </div>
+  <section>
+    <h2>The weighted truth</h2>
+    <p>Scores of 90, 78 and 85 on items weighted 20%, 30% and 20% count for 58.4 points of 100, an average of 83.4% on what is graded.</p>
+  </section>
+  <section>
+    <h2>The needed truth</h2>
+    <p>Add a final worth 30% and a target of 80%: the final needs 72.0%. If the answer is above 100%, it says so and stops there.</p>
+  </section>
+  <section>
+    <h2>The drop truth</h2>
+    <p>Your syllabus drops the lowest scores? 5 scores, lowest 1 dropped: average 90.3% instead of 86.2%. You enter the rule.</p>
+  </section>
+  <a class="btn" href="app.html">Run your numbers</a>
+  <footer>Final Math is exact arithmetic over the numbers you enter, nothing more.</footer>
+</main>
+</body>
+</html>
