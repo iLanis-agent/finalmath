@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Final Math - app</title>
+<style>
+  :root { --accent:#5b4bb0; --ink:#221d33; --paper:#f6f4fb; --soft:#e8e4f5; }
+  * { box-sizing:border-box; margin:0; }
+  body { font-family:Georgia, "Times New Roman", serif; background:var(--paper); color:var(--ink); line-height:1.55; }
+  main { max-width:660px; margin:0 auto; }
+  .boundary { background:#fdeaea; border-left:6px solid #b03030; color:#5c1c1c; border-radius:6px; padding:1rem 1.1rem; }
+  .boundary strong { display:block; margin-bottom:.3rem; }
+  body { padding:2rem 1.2rem; }
+  h1 { font-size:1.8rem; color:var(--accent); }
+  .boundary { margin:1rem 0 1.4rem; }
+  .panel { background:var(--soft); border-left:5px solid var(--accent); border-radius:6px; padding:1rem 1.1rem; margin-bottom:1.1rem; }
+  h2 { font-size:1.1rem; margin-bottom:.6rem; }
+  p.note { font-size:.9rem; margin-bottom:.4rem; }
+  label { display:block; font-size:.9rem; margin:.45rem 0 .1rem; }
+  input { width:100%; padding:.45rem .55rem; font-size:1rem; border:1px solid #cfc8e8; border-radius:6px; background:#fff; color:var(--ink); }
+  .row { display:grid; grid-template-columns:1fr 1fr; gap:.6rem; }
+  .row5 { display:grid; grid-template-columns:repeat(5, 1fr); gap:.4rem; }
+  .out { margin-top:.7rem; font-size:.98rem; background:#fff; border:1px dashed #cfc8e8; border-radius:6px; padding:.6rem .7rem; min-height:2.4rem; }
+  .out.err { border-color:#b03030; color:#8a1f1f; }
+  footer { margin-top:1.8rem; font-size:.85rem; color:#6d6688; }
+  a { color:var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Final Math</h1>
+  <div class="boundary">
+    <strong>Boundary: arithmetic only</strong>
+    This page works from the scores, weights and targets you type. It does not say what a grade means or whether a target is realistic. Your syllabus decides the real rules.
+  </div>
+
+  <div class="panel">
+    <h2>Graded so far</h2>
+    <p class="note">Score (0 to 200) and weight (% of the grade) for three items.</p>
+    <div class="row"><div><label for="s1">Item 1 score</label><input id="s1" type="number" step="any" value="90"></div><div><label for="w1">Item 1 weight %</label><input id="w1" type="number" step="any" value="20"></div></div>
+    <div class="row"><div><label for="s2">Item 2 score</label><input id="s2" type="number" step="any" value="78"></div><div><label for="w2">Item 2 weight %</label><input id="w2" type="number" step="any" value="30"></div></div>
+    <div class="row"><div><label for="s3">Item 3 score</label><input id="s3" type="number" step="any" value="85"></div><div><label for="w3">Item 3 weight %</label><input id="w3" type="number" step="any" value="20"></div></div>
+  </div>
+
+  <div class="panel">
+    <h2>The weighted truth</h2>
+    <div class="out" id="w-out"></div>
+  </div>
+
+  <div class="panel">
+    <h2>The needed truth</h2>
+    <p class="note">Final weight and your target. All weights must add up to 100.</p>
+    <div class="row">
+      <div><label for="fw">Final weight %</label><input id="fw" type="number" step="any" value="30"></div>
+      <div><label for="tg">Target %</label><input id="tg" type="number" step="any" value="80"></div>
+    </div>
+    <div class="out" id="n-out"></div>
+  </div>
+
+  <div class="panel">
+    <h2>The drop truth</h2>
+    <p class="note">Five scores and how many lowest ones your syllabus drops.</p>
+    <div class="row5">
+      <input id="d1" type="number" step="any" value="92" aria-label="score 1">
+      <input id="d2" type="number" step="any" value="85" aria-label="score 2">
+      <input id="d3" type="number" step="any" value="70" aria-label="score 3">
+      <input id="d4" type="number" step="any" value="96" aria-label="score 4">
+      <input id="d5" type="number" step="any" value="88" aria-label="score 5">
+    </div>
+    <label for="dn">Lowest scores dropped</label>
+    <input id="dn" type="number" min="0" step="1" value="1">
+    <div class="out" id="d-out"></div>
+  </div>
+
+  <footer>Final Math is exact arithmetic over the numbers you enter. <a href="index.html">Why it exists</a>.</footer>
+</main>
+<script src="engine.js"></script>
+<script>
+  const num = (id) => Number(document.getElementById(id).value);
+  function show(id, fn) {
+    const out = document.getElementById(id);
+    try { out.textContent = fn(); out.classList.remove("err"); }
+    catch (e) { out.textContent = e.message; out.classList.add("err"); }
+  }
+  function recalc() {
+    const sc = [num("s1"), num("s2"), num("s3")];
+    const wt = [num("w1"), num("w2"), num("w3")];
+    show("w-out", () => weightedTruth(sc, wt));
+    show("n-out", () => neededTruth(sc, wt, num("fw"), num("tg")));
+    show("d-out", () => dropTruth([num("d1"), num("d2"), num("d3"), num("d4"), num("d5")], num("dn")));
+  }
+  document.querySelectorAll("input").forEach((el) => {
+    el.addEventListener("input", recalc);
+    el.addEventListener("change", recalc);
+  });
+  recalc();
+</script>
+</body>
+</html>
